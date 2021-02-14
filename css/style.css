@@ -1,0 +1,17 @@
+p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+ul {
+    list-style: disc;
+    list-style-position: inside;
+    margin-bottom: 20px;
+    margin-left: 35px;
+}
+
+li {
+    font-size: 20px;
+}
