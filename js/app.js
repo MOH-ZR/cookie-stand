@@ -5,96 +5,114 @@ function getRandomCustomers(minCusts, maxCusts) {
     return Math.floor(Math.random() * (maxCusts - minCusts + 1) + minCusts);
 }
 
-// calculate the simulated amounts of cookies purchased for each hour 
-function calcCookiesPerHour(shopLocation) {
-    for (let i = 1; i <= 14; i++) {
-        shopLocation.purchasedCookies.push(Math.floor(shopLocation.avgCookiesPerSale *
-            getRandomCustomers(shopLocation.minHourlyCustomers, shopLocation.maxHourlyCustomers)));
-    }
+// create table and render it to sales.html
+let salmonTable = document.createElement('table');
+let tableParent = document.getElementById('salmon-sales');
+tableParent.appendChild(salmonTable);
+
+// constructor for creating a new shop location object
+function SalmonCookieStand(minHourlyCustomers, maxHourlyCustomers, avgCookiesPerSale) {
+    this.minHourlyCustomers = minHourlyCustomers;
+    this.maxHourlyCustomers = maxHourlyCustomers;
+    this.avgCookiesPerSale = avgCookiesPerSale;
+    this.purchasedCookies = this.calcCookiesPerHour();
 }
 
-// write the output for shope location on sales.html
-function displayShopSales(shopObject, shopLocation) {
+SalmonCookieStand.prototype.calcCookiesPerHour = function () {
+    let temp = [];
+    for (let i = 1; i <= 14; i++) {
+        temp.push(Math.floor(this.avgCookiesPerSale *
+            getRandomCustomers(this.minHourlyCustomers, this.maxHourlyCustomers)));
+    }
+    this.purchasedCookies = temp;
+}
 
-    let paragraph = document.createElement('p');
-    paragraph.textContent = shopLocation;
-    let parent = document.getElementById('sales-body');
-    let unorderedList = document.createElement('ul');
+// render the table's header
+function renderHeader() {
+    let tablehead = document.createElement('tr');
+    salmonTable.appendChild(tablehead);
 
-    //append shop name and sales per hour to the body of sales.html document
-    parent.appendChild(paragraph);
-    parent.appendChild(unorderedList);
-
-    // iterate to calculate purchased cookies per hour and append the output to sales document 
-    let totalCookies = 0;
+    // create empty head for the first column
+    let emptyHead = document.createElement('th');
+    tablehead.appendChild(emptyHead);
     for (let i = 6; i <= 20; i++) {
-        // append purchased cookies per hour to the unordered list as list item
-        let listItem = document.createElement('li');
-        unorderedList.appendChild(listItem);
-
+        let tableh1 = document.createElement('th');
         if (i <= 19) {
-            // calculate the total cookies sold
-            totalCookies += shopObject.purchasedCookies[i - 6];
-
             if (i <= 12) {
-                listItem.textContent = i + 'am: ' + shopObject.purchasedCookies[i - 6] + ' cookies';
+                tableh1.textContent = i + ':00am';
             } else {
-                listItem.textContent = (i - 12) + 'pm: ' + shopObject.purchasedCookies[i - 6] + ' cookies';
+                tableh1.textContent = (i - 12) + ':00pm';
             }
         } else {
-            listItem.textContent = 'Total: ' + totalCookies + ' cookies'
+            tableh1.textContent = 'Daily Location Total';
         }
+        tablehead.appendChild(tableh1);
     }
 }
 
-let seattleSales = {
-    minHourlyCustomers: 23,
-    maxHourlyCustomers: 65,
-    avgCookiesPerSale: 6.3,
-    purchasedCookies: []
+// create render function for each shop location
+SalmonCookieStand.prototype.render = function (location) {
+    let totalSales = 0;
+    let shopRow = document.createElement('tr');
+
+    let shopRowHead = document.createElement('th');
+    shopRowHead.textContent = location;
+    shopRow.appendChild(shopRowHead);
+
+    salmonTable.appendChild(shopRow);
+    for (let i = 0; i <= 14; i++) {
+        let shopData = document.createElement('td');
+        shopRow.appendChild(shopData);
+        if (i <= 13) {
+            totalSales += this.purchasedCookies[i];
+            shopData.textContent = this.purchasedCookies[i];
+        } else {
+            shopData.textContent = totalSales;
+        }
+    }
+    this.purchasedCookies.push(totalSales);
 }
 
-let tokyoSales = {
-    minHourlyCustomers: 3,
-    maxHourlyCustomers: 24,
-    avgCookiesPerSale: 1.2,
-    purchasedCookies: []
+// render the table's footer
+function renderFooter() {
+    let hourSales = 0;
+    let tableFooter = document.createElement('tr');
+    
+    // create header for totals row
+    let tableFooterHeader = document.createElement('th');
+    tableFooterHeader.textContent = "Totals";
+    tableFooter.appendChild(tableFooterHeader);
+     
+    salmonTable.appendChild(tableFooter);
+    for (let i = 1; i <= 15; i++) {
+        hourSales = seattleSales.purchasedCookies[i - 1] +
+            tokyoSales.purchasedCookies[i - 1] +
+            dubaiSales.purchasedCookies[i - 1] +
+            parisSales.purchasedCookies[i - 1] +
+            limaSales.purchasedCookies[i - 1];
+
+        let tableData = document.createElement('td');
+        tableData.textContent = hourSales;
+        tableFooter.appendChild(tableData);
+    }
 }
 
-let dubaiSales = {
-    minHourlyCustomers: 11,
-    maxHourlyCustomers: 38,
-    avgCookiesPerSale: 2.3,
-    purchasedCookies: []
-}
+let seattleSales = new SalmonCookieStand(23, 65, 6.3);
+let tokyoSales = new SalmonCookieStand(3, 24, 1.2);
+let dubaiSales = new SalmonCookieStand(11, 38, 2.3);
+let parisSales = new SalmonCookieStand(20, 38, 2.3);
+let limaSales = new SalmonCookieStand(2, 16, 4.6);
 
-let parisSales = {
-    minHourlyCustomers: 20,
-    maxHourlyCustomers: 38,
-    avgCookiesPerSale: 2.3,
-    purchasedCookies: []
-}
+seattleSales.calcCookiesPerHour();
+tokyoSales.calcCookiesPerHour();
+dubaiSales.calcCookiesPerHour();
+parisSales.calcCookiesPerHour();
+limaSales.calcCookiesPerHour();
 
-let limaSales = {
-    minHourlyCustomers: 2,
-    maxHourlyCustomers: 16,
-    avgCookiesPerSale: 4.6,
-    purchasedCookies: []
-}
-
-
-// render the output to sales.html document
-calcCookiesPerHour(seattleSales);
-displayShopSales(seattleSales, "Seattle");
-
-calcCookiesPerHour(tokyoSales);
-displayShopSales(tokyoSales, "Tokyo");
-
-calcCookiesPerHour(dubaiSales);
-displayShopSales(dubaiSales, "Dubai");
-
-calcCookiesPerHour(parisSales);
-displayShopSales(parisSales, "Paris");
-
-calcCookiesPerHour(limaSales);
-displayShopSales(limaSales, "Lima");
+renderHeader();
+seattleSales.render('Seattle');
+tokyoSales.render('Tokyo');
+dubaiSales.render('Dubai');
+parisSales.render('Paris');
+limaSales.render('Lima');
+renderFooter();

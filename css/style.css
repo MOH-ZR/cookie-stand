@@ -1,17 +1,29 @@
-p {
-    font-size: 20px;
-    font-weight: bold;
-    margin-left: 10px;
-    margin-bottom: 15px;
+body {
+    background-color: #f1d9e5;
+}
+div {
+   margin-top: 80px;
+}
+table, td, th {
+    border: 2px solid rgb(189, 74, 36);
+    text-align: center;
+    margin: 0 auto;
+    font-size: 14px;  
+}
+th {
+    font-weight: 550;
+    background-color: darksalmon;
 }
 
-ul {
-    list-style: disc;
-    list-style-position: inside;
-    margin-bottom: 20px;
-    margin-left: 35px;
+th, td {
+    font-family: 'Reggae One', cursive;
+    padding: 3px;
 }
 
-li {
-    font-size: 20px;
+h1 {
+    margin-top: 20px;
+    font-family: 'Reggae One', cursive;;
+    font-size: 70px;
+    text-align: center;
+    color: rgb(231, 129, 95);
 }
