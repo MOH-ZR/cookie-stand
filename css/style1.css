@@ -22,8 +22,18 @@ th, td {
 
 h1 {
     margin-top: 20px;
-    font-family: 'Reggae One', cursive;;
+    font-family: 'Reggae One', cursive;
     font-size: 70px;
     text-align: center;
     color: rgb(231, 129, 95);
+}
+
+a {
+    color: rgb(168, 66, 31);
+    text-decoration: none;
+}
+p{
+    margin-left: 100px;
+    margin-top: 10px;
+    font-family: 'Reggae One', cursive;
 }

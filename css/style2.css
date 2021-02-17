@@ -1,0 +1,62 @@
+body {
+    background-color: #f8e8e8;
+}
+
+h1 {
+    font-size: 35px;
+    font-family: 'Ranchers', cursive;
+    color:  rgb(134, 45, 15);
+    
+}
+header {
+    position: relative;
+    background-color:  rgb(190, 79, 42);
+    padding: 10px;
+    border-top: 2px solid rgb(134, 45, 15);
+    border-bottom:2px solid rgb(134, 45, 15) ;
+    border-radius: 5;
+}
+
+header nav ul li {
+    font-size: 30px;
+    color: rgb(252, 151, 117);
+    font-family: 'Ranchers', cursive;
+    margin-left:175px;
+}
+header h1, header nav, header nav ul li{
+    display: inline-block;
+}
+
+header nav {
+    position: absolute;
+    top: 13px;
+    right: 175px;
+}
+
+footer {
+    font-size: 25px;
+    font-family: cursive;
+    color: rgb(212, 161, 144);
+    background-color: rgb(190, 79, 42);
+}
+.about-us {
+    font-size: 25px;
+    font-family: cursive;
+    color: rgb(190, 79, 42);
+    text-align: justify;
+    margin: 40px;
+    line-height: 35px;
+}
+h1 img {
+    width: 100px;
+    height: 32px;
+}
+
+section img {
+    margin: 0px 40px;
+    box-shadow: 0px inset;
+}
+
+a {
+    color: rgb(190, 79, 42);
+}
