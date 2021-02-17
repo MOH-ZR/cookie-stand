@@ -7,7 +7,7 @@ div {
 table, td, th {
     border: 2px solid rgb(189, 74, 36);
     text-align: center;
-    margin: 0 auto;
+    margin: 0 auto; 
     font-size: 14px;  
 }
 th {
@@ -36,4 +36,52 @@ p{
     margin-left: 100px;
     margin-top: 10px;
     font-family: 'Reggae One', cursive;
+}
+
+fieldset {
+    text-align: center;
+    padding-top: 30px;
+    width: 200px;
+    margin: 0 auto;
+    line-height: 20px;
+}
+
+fieldset input {
+    background-color: rgb(231, 129, 95);
+    width: 210px;
+    height: 25px;
+    border: 2px solid darksalmon;
+    border-radius: 50px;
+    font-family: 'Reggae One', cursive;
+    text-align: center;
+    color: white;
+}
+
+input:focus {
+    outline: none;
+}
+fieldset input:nth-child(4) {
+    width: 50px;
+}
+label {
+
+    font-family: 'Reggae One', cursive;
+}
+
+#salmon-sales {
+    margin-top: 40px;
+}
+
+#add-shop{
+    margin-top: 20px;
+    margin-left: 635px;
+    border: 2px solid darksalmon;
+    border-radius: 50px;
+    font-family: 'Reggae One', cursive;
+    text-align: center;
+    width: 100px;
+}
+
+#add-shop:hover {
+    background-color: rgb(231, 129, 95);
 }

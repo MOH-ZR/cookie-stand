@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Salmon Cookies</title>
@@ -7,12 +8,23 @@
     <link rel="stylesheet" href="../css/style1.css">
     <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <h1>Pat's Salmon Cookies Sales</h1>
+    <form action="" id="new-shop">
+        <fieldset>
+            <label for="shop">Shop Location</label><input type="text" id="shop" name="shopLocation"autocomplete="off" required><br />
+            <label for="min">Min Customers</label><input type="text" id="min" name="minCusts" autocomplete="off" required><br />
+            <label for="max">Max Customers</label><input type="text" id="max" name="maxCusts" autocomplete="off" required><br />
+            <label for="avg">Avg Hourly Customers</label><input type="text" id="avg" name="avgCusts" autocomplete="off" required><br />
+        </fieldset>
+        <input type="submit" value="Add Shop" id="add-shop" required><span id='warning'></span><br>
+    </form>
     <div id="salmon-sales">
-        
+
     </div>
     <p><a href="../pages/index.html">Back to Home Page</a></p>
     <script type="text/javascript" src="../js/app.js"></script>
 </body>
+
 </html>
